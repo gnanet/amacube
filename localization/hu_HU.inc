@@ -86,8 +86,27 @@ $labels['success_release'] = 'Selected messages have been released.';
 $labels['success_delete'] = 'Selected messages have been deleted.';
 $labels['recipient'] = 'Címzett';
 
+
 $labels['db_conect_error'] = 'Database connection error.';
 $labels['db_query_error'] = 'Database query error.';
 $labels['db_policy_error'] = 'Database policy error.';
 $labels['spam_quarantine_cutoff_level_error'] = 'Spam cutoff level must be an integer number between 20 and 1001';
+
+$labels['whitelist'] = 'Whitelist';
+$labels['blacklist'] = 'Blacklist';
+$labels['wblist_address'] = 'Add E-Mail to Whitelist/Blacklist';
+
+$labels['wblist_no_result'] = 'No Addresses found';
+$labels['addresses'] = 'Addresses';
+
+$labels['wbtype'] = 'W/B listed';
+$labels['wb_decode_W'] = 'Whitelisted';
+$labels['wb_decode_N'] = 'Whitelisted';
+$labels['wb_decode_B'] = 'Blacklisted';
+$labels['wb_decode_Y'] = 'Blacklisted';
+
+$labels['deletemessage']  = 'Törlés';
+$labels['releasemessage'] = 'Elengedés';
+
+
 ?>

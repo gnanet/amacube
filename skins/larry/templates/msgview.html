@@ -1,0 +1,69 @@
+<roundcube:object name="doctype" value="html5" />
+<html>
+<head>
+<title><roundcube:object name="pagetitle" /></title>
+<roundcube:include file="/includes/links.html" />
+</head>
+<roundcube:if condition="env:extwin" /><body class="noscroll extwin"><roundcube:else /><body class="fullheight"><roundcube:endif />
+
+<roundcube:include file="/includes/header.html" />
+
+<div id="mainscreen">
+
+<h1 class="voice"><roundcube:object name="plugin.msgheaders" valueOf="subject" /></h1>
+
+<!-- toolbar -->
+<h2 id="aria-label-toolbar" class="voice"><roundcube:label name="arialabeltoolbar" /></h2>
+<div id="messagetoolbar" class="toolbar fullwidth" role="toolbar" aria-labelledby="aria-label-toolbar">
+	<roundcube:include file="/includes/mailtoolbar.html" />
+</div>
+
+<roundcube:if condition="!env:extwin" />
+
+    <div id="mainscreencontent">
+
+        <div id="mailview-left">
+        </div>
+
+        <div id="mailview-right" class="uibox" role="main">
+<roundcube:else />
+
+    <div id="mailview-right" class="offset fullwidth uibox" role="main">
+<roundcube:endif />
+
+<div id="messageheader">
+<span class="moreheaderstoggle"></span>
+
+<h2 class="subject"><span class="voice"><roundcube:label name="subject" />: </span><roundcube:object name="plugin.msgheaders" valueOf="subject" /></h2>
+<div class="message-headers">
+<roundcube:object name="plugin.msgheaders" class="headers-table" addicon="/images/addcontact.png" exclude="subject" max="20" />
+</div>
+<roundcube:object name="plugin.msgfullheaders" id="full-headers" />
+
+<div id="contactphoto"><roundcube:object name="plugin.contactphoto" /></div>
+</div>
+
+<div id="messagecontent">
+<div class="rightcol" role="region" aria-labelledby="aria-label-messageattachments">
+<h2 id="aria-label-messageattachments" class="voice"><roundcube:label name="attachments" /></h2>
+<roundcube:object name="plugin.msgattachments" id="attachment-list" class="attachmentslist" />
+</div>
+<div class="leftcol" role="region" aria-labelledby="aria-label-messagebody">
+<h2 id="aria-label-messagebody" class="voice"><roundcube:label name="arialabelmessagebody" /></h2>
+<roundcube:object name="plugin.msgobjects" id="message-objects" />
+<roundcube:object name="plugin.msgbody" id="messagebody" headertableclass="message-partheaders headers-table" />
+</div>
+</div>
+
+</div><!-- end mailview-right -->
+
+<roundcube:if condition="!env:extwin" />
+    </div><!-- end mainscreencontent -->
+<roundcube:endif />
+
+</div><!-- end mainscreen -->
+
+<roundcube:include file="/includes/footer.html" />
+
+</body>
+</html>

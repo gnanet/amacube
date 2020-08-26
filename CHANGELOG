@@ -1,3 +1,12 @@
+2020.08.25.:
+Gergely Nagy <gna@r-us.hu>
+* Code Cleanup using php_cs on amacube.php, AmavisQuarantine.php
+* Work In Progress: msgview-feature
+  * SQL query to fetch full raw message source
+  * Clone rcube_mime functionality
+  * Clone _mail;_show functionality, including message-parsing, content-processing, template display
+
+Previous Versions (not sure on the numbering scheme):
 0.2.1: 
 Troy Carpenter <troy@carpenter.cx>
 * Slightly document new database, enough to get plugin running again.
@@ -5,7 +14,6 @@ Troy Carpenter <troy@carpenter.cx>
 * Modify quarantine.html with an inline style to make it work with Kolab
 * Prevent various mail fields (specifically subject) from being a substring.
 
-Previous Versions (not sure on the numbering scheme):
 0.2.0:
 seb <sebastiaan.klaasen@talzia.nl>
     Implemented account catchall feature

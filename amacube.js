@@ -105,3 +105,8 @@ if (window.rcmail) {
    });
 }
 
+function MsgView(enc_mail_id,enc_recip_email) {
+        var url = "?_task=quarantine&_action=amacube-msgview&_mail_id=" + enc_mail_id + "&_recip_email=" + enc_recip_email;
+        window.open(url,'MessageView','width=800,height=600,scrollbars=1');
+}
+

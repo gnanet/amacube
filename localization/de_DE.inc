@@ -88,10 +88,16 @@ $labels['to'] = 'an';
 $labels['of'] = 'von';
 $labels['success_release'] = 'Ausgewählte Nachrichten wurden freigegeben.';
 $labels['success_delete'] = 'Ausgewählte Nachrichten wurden gelöscht.';
-$labels['recipient'] = 'Empfänger';
 
 $labels['db_conect_error'] = 'Datenbankverbindungsfehler.';
 $labels['db_query_error'] = 'Datenbankabfragefehler.';
 $labels['db_policy_error'] = 'Datenbankrichtlinienfehler.';
 $labels['spam_quarantine_cutoff_level_error'] = 'Der Wert für zulöschende Spammails muss eine ganze Zahl zwischen 20 und 1001 sein.';
+
+$labels['amavissettings_pagetitle'] = 'Amavis Einstellungen';
+
+$labels['releasemessage'] = 'Freigeben';
+$labels['deletemessage'] = 'Löschen';
+
+
 ?>

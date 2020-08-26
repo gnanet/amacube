@@ -82,17 +82,19 @@ options.
 ## TODO
 
 This is a uncomplete list of things that need to be done with this plugin
-* Add functionality similar to Mailzu (http://sourceforge.net/projects/mailzu/)
-  * Add left side menu area
-  * Add "show summary"
-  * Add Administrator functionality
-  * Add Site quarantine summary
-  * Add Site quarantine list
-  * Add "click on email title" to see email content
-* Improve item selection mechanism
+- Add functionality similar to Mailzu (http://sourceforge.net/projects/mailzu/)
+  - [ ] Add left side menu area
+  - [ ] Add "show summary"
+  - [x] Add Administrator functionality - DONE
+  - [ ] Add Site quarantine summary
+  - [x] Add Site quarantine list - DONE
+  - [x] Add "click on email title" to see email content - Branch name: msgview-feature
+- Improve item selection mechanism
 
 
 ## Version
+
+2020.08.25. Work In Progress: msgview-feature
 
 0.2.1 - based on Roundcube 1.0.x support. Support for Kolab styles.
 See CHANGELOG

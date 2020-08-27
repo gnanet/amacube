@@ -719,6 +719,8 @@ class amacube extends rcube_plugin
         $data = array('type' => $part->ctype_secondary, 'body' => $body, 'id' => $part->mime_id, 'charset' => $part->charset)
                 + $p + array('safe' => false, 'plain' => false, 'inline_html' => true);
 
+        // error_log('initial ctype_secondary: '.$part->ctype_secondary);
+
         // convert html to text/plain
         if ($data['plain'] && ($data['type'] == 'html' || $data['type'] == 'enriched')) {
             if ($data['type'] == 'enriched') {
@@ -750,6 +752,7 @@ class amacube extends rcube_plugin
 
         // plaintext postprocessing
         if ($part->ctype_secondary == 'plain') {
+            // error_log('plain ctype_secondary: '.$part->ctype_secondary);
             $body = $this->amacube_plain_body($body, $part->ctype_parameters['format'] == 'flowed');
         }
 
@@ -761,6 +764,7 @@ class amacube extends rcube_plugin
 
     public function amacube_plain_body($body, $flowed = false)
     {
+        // error_log('plain forced ??? body: '.$body);
         $options   = array('flowed' => $flowed, 'wrap' => !$flowed, 'replacer' => 'rcmail_string_replacer');
         $text2html = new rcube_text2html($body, false, $options);
         $body      = $text2html->get_html();
@@ -947,6 +951,10 @@ class amacube extends rcube_plugin
 
         // Better security by adding rel="noreferrer" (#1484686)
         if (($tag == 'a' || $tag == 'area') && $attrib['href'] && $attrib['href'][0] != '#') {
+            $showlink = $attrib['href'];
+            $attrib['href']    = './#NOP';
+            $attrib['onclick'] = 'return false';
+            $tag = "span> Link to ".$showlink." disarmed</span><".$tag;
             $attrib['rel'] = 'noreferrer';
         }
 
@@ -1319,7 +1327,29 @@ class amacube extends rcube_plugin
                 }
             }
         }
+        else if (($this->quarantine_msg->ctype_secondary == 'html') && (!empty($this->quarantine_msg->body))) {
+                        $body = $this->quarantine_msg->body;
+                        if (!empty($this->quarantine_msg->charset) && (strtoupper($this->quarantine_msg->charset) != 'UTF-8')) {
+                            $body = rcube_charset::convert($body, strtoupper($this->quarantine_msg->charset));
+                        }
+                        $body = $this->amacube_print_body($body, $this->quarantine_msg, array('safe' => $safe_mode, 'plain' => !$this->rc->config->get('prefer_html')));
+                        $container_id = 'message-htmlpart' . (++$part_no);
+                        $body         = $this->amacube_html4inline($body, $container_id, 'rcmBody', $attrs, $safe_mode);
+                        $div_attr     = array('class' => 'message-htmlpart', 'id' => $container_id);
+                        $style        = array();
+                        // error_log("stage:handler msgbody after inline body ".print_r($body,true));
+
+                        if (!empty($attrs)) {
+                            foreach ($attrs as $a_idx => $a_val)
+                                $style[] = $a_idx . ': ' . $a_val;
+                            if (!empty($style))
+                                $div_attr['style'] = implode('; ', $style);
+                        }
+
+                        $out .= html::div($div_attr, $body);
+                    }
         else {
+            // error_log('no parts parsed '."\n".print_r($this->quarantine_msg,true)."\n");
             $out .= html::div('message-part', $this->amacube_plain_body($this->quarantine_msg->body));
         }
 
